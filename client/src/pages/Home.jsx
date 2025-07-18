@@ -7,7 +7,7 @@ export const Home = () => {
   useEffect(() => {
     const checkLoggedIn = async () => {
       try {
-  const res = await fetch("https://login-system-production.up.railway.app/validate", {
+  const res = await fetch("https://login-system-production.up.railway.app/api/validate", {
     method: "GET",
     credentials: "include", // send cookies
   });
