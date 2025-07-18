@@ -14,7 +14,7 @@ export const Signup = ()=>{
       const navigate = useNavigate()
 
    const onSubmit = async (data) =>{
-    let res = await fetch('https://login-system-production.up.railway.app/signup', 
+    let res = await fetch('https://login-system-production.up.railway.app/api/signup', 
        {method: "POST" ,
     body: JSON.stringify(data),
     headers: {'Content-Type': 'application/json'},
