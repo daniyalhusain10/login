@@ -27,7 +27,7 @@ export const Home = () => {
       if (!confirmLogout) return; // cancel if user says "No"  
 
     try {
-      const res = await fetch("https://login-system-production.up.railway.app/logout", {
+      const res = await fetch("https://login-system-production.up.railway.app/api/logout", {
         method: "GET",
         credentials: "include", //send cookies
       });
