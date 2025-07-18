@@ -15,7 +15,7 @@ import { Bounce } from 'react-toastify';
  const Navigate = useNavigate()
  //caling api or recieving data for log in
    const onSubmit = async (data) =>{
-    let res = await fetch('https://login-system-production.up.railway.app/reset-password',
+    let res = await fetch('https://login-system-production.up.railway.app/api/reset-password',
     {method: "POST" ,
     body: JSON.stringify({
     code: data.code,
