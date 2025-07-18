@@ -30,19 +30,21 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log(' Connected to MongoDB Atlas'))
   .catch((err) => console.error(' MongoDB connection error:', err));
 
-app.get('/validate', redirectIfAuthenticated, (req, res) => {
+const appuUrl = 'https://login-system-production-be34signup.up.railway.app/'
+
+app.get(`${appUrl}/validate`, redirectIfAuthenticated, (req, res) => {
   // At this point, token is already verified and user is attached to req.user
   res.json({ loggedIn: true, });
 });
 
-app.post('/forget-password',forgetPassword,async (req,res)=>{
+app.post(`${appUrl}/forget-password`,forgetPassword,async (req,res)=>{
    res.json({success: true, message : "password forgeted"})
 })
-app.post('/reset-password',varifyPassword,async (req,res)=>{
+app.post(`${appUrl}/reset-password`,varifyPassword,async (req,res)=>{
     res.status(200).json({success: true})
 });
 
-app.post('/signup', async function(req, res) {
+app.post(`${appUrl}/signup`, async function(req, res) {
   const { username, email, password } = req.body;
 
   try {
@@ -69,7 +71,7 @@ app.post('/signup', async function(req, res) {
 });
 
 
-app.post('/login',async (req, res) => {
+app.post(`${appUrl}/login`,async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -99,7 +101,7 @@ app.post('/login',async (req, res) => {
   }
 });
 
-app.get('/logout', (req, res) => {
+app.get(`${appUrl}/logout`, (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     sameSite: "Lax",
