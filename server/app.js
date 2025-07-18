@@ -32,19 +32,19 @@ mongoose.connect(process.env.MONGO_URI)
 
 const appuUrl = 'https://login-system-production-be34signup.up.railway.app/'
 
-app.get(`${appUrl}/validate`, redirectIfAuthenticated, (req, res) => {
+app.get(`${appUrl}/api/validate`, redirectIfAuthenticated, (req, res) => {
   // At this point, token is already verified and user is attached to req.user
   res.json({ loggedIn: true, });
 });
 
-app.post(`${appUrl}/forget-password`,forgetPassword,async (req,res)=>{
+app.post(`${appUrl}/api/forget-password`,forgetPassword,async (req,res)=>{
    res.json({success: true, message : "password forgeted"})
 })
-app.post(`${appUrl}/reset-password`,varifyPassword,async (req,res)=>{
+app.post(`${appUrl}/api/reset-password`,varifyPassword,async (req,res)=>{
     res.status(200).json({success: true})
 });
 
-app.post(`${appUrl}/signup`, async function(req, res) {
+app.post(`${appUrl}/api/signup`, async function(req, res) {
   const { username, email, password } = req.body;
 
   try {
@@ -71,7 +71,7 @@ app.post(`${appUrl}/signup`, async function(req, res) {
 });
 
 
-app.post(`${appUrl}/login`,async (req, res) => {
+app.post(`${appUrl}/api/login`,async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -101,7 +101,7 @@ app.post(`${appUrl}/login`,async (req, res) => {
   }
 });
 
-app.get(`${appUrl}/logout`, (req, res) => {
+app.get(`${appUrl}/api/logout`, (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     sameSite: "Lax",
